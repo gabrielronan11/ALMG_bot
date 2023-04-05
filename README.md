@@ -1,7 +1,12 @@
 <h1 align="center"> ALMG Bot </h1>
 
 Agenda diária da [Assembleia Legislativa de Minas Gerais](https://www.almg.gov.br/comunicacao/agenda/) por meio de um bot do Telegram
---------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------
+# :hammer: Funcionalidades do projeto
+
+- `Funcionalidade 1`: obter a agenda da ALMG todos os dias a partir de um robô do Telegram
+- `Funcionalidade 2`: cadastrar a agenda da ALMG todos os dias numa planilha do Google Spreadsheets
+
 Esse repositório é um site que possui:
 
 -   Robô do [Telegram](https://telegram.org/)
