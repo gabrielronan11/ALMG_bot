@@ -31,6 +31,8 @@ def dataframe_ALMG():
     local = bs.findAll('p', {"class": "m-0 mt-2 text-gray-550"})[i].text
     agenda_dia.append([comissão, link, horario, local])
   df_agenda = pd.DataFrame(agenda_dia, columns=['Comissão', 'Link da Agenda', 'Horário', 'Local'])
+  df_agenda['Data']= datetime.today().strftime('%d-%m-%Y')
+  df_agenda['Horário'] = df_agenda['Horário'].astype(str)
   return df_agenda
 
 @app.route("/telegram-bot", methods=["POST"])
@@ -50,3 +52,9 @@ def telegram_bot():
   resposta = requests.post(f"https://api.telegram.org./bot{TELEGRAM_API_KEY}/sendMessage", data=nova_mensagem)
   print(resposta.text)
   return "Ok!"
+
+@app.route("/planilha-ALMG")
+def planilha_ALMG():
+  lista_df = dataframe_ALMG().values.tolist()
+  sheet.append_rows(lista_df)
+  return "Planilha escrita!"
