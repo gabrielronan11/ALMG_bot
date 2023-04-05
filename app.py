@@ -38,16 +38,18 @@ def dataframe_ALMG():
 
 @app.route("/telegram-bot", methods=["POST"])
 def telegram_bot():
-  global df_agenda
   update = request.json
   chat_id = update["message"]["chat"]["id"]
   message = update["message"]["text"]
   if message == "/start":
     texto_resposta=  emoji.emojize(":robot:") + emoji.emojize(":clapping_hands:") + emoji.emojize(":robot:") + "\n\n" + "Olá! Seja bem-vindo(a)! Esse é um bot no qual você pode ver a agenda da Assembleia Legislativa em Minas Gerais no dia de hoje. \n\n Digite: '<b>Qual a agenda da ALMG hoje?</b>' e confira!"
   elif message == "Qual a agenda da ALMG hoje?":
-    texto_resposta = emoji.emojize(":police_car_light:") + "<b>ESSA É A AGENDA DA ALMG HOJE</b>" + emoji.emojize(":police_car_light:") + "\n\n" 
-    for i, row in df_agenda.iterrows():
-      texto_resposta += emoji.emojize(":pushpin:") + f"{row['Comissão']}\n" + emoji.emojize(":alarm_clock:") + f"{row['Horário']}\n" + emoji.emojize(":house:") + f"{row['Local']}\n" + emoji.emojize(":link:") + f"Mais informações em: {row['Link da Agenda']}\n\n"
+    if df_agenda is None:
+      texto_resposta = "A agenda da ALMG ainda não foi atualizada. Tente novamente mais tarde."
+    else:
+      texto_resposta = emoji.emojize(":police_car_light:") + "<b>ESSA É A AGENDA DA ALMG HOJE</b>" + emoji.emojize(":police_car_light:") + "\n\n" 
+      for i, row in df_agenda.iterrows():
+        texto_resposta += emoji.emojize(":pushpin:") + f"{row['Comissão']}\n" + emoji.emojize(":alarm_clock:") + f"{row['Horário']}\n" + emoji.emojize(":house:") + f"{row['Local']}\n" + emoji.emojize(":link:") + f"Mais informações em: {row['Link da Agenda']}\n\n"
   else:
     texto_resposta = "Não entendi!" + emoji.emojize(":sad_but_relieved_face:") + "\n" + "Se você quer saber a agenda da Assembleia Legislativa de Minas Gerais hoje, pergunte: \n <b>'Qual a agenda da ALMG hoje?'</b>"
   nova_mensagem = {"chat_id": chat_id, "text": texto_resposta, "parse_mode": "html"}
