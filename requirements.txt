@@ -1,3 +1,4 @@
+--upgrade pip
 flask
 gunicorn
 requests
@@ -6,5 +7,4 @@ oAuth2Client
 emoji
 pandas
 json
-bs4
---upgrade pip
+beautifulsoup4==4.10.0
