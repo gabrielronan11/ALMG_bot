@@ -55,5 +55,5 @@ print(response.text)
 
 # Autores
 
-| [<img src="https://avatars.githubusercontent.com/u/37356058?v=4" width=115><br><sub>Gabriel Ronan</sub>](https://github.com/gabrielronan11) |
+| [<img src="https://avatars.githubusercontent.com/u/114266038?s=96&v=4" width=115><br><sub>Gabriel Ronan</sub>](https://github.com/gabrielronan11) |
 | :---: | :---: | :---: |
