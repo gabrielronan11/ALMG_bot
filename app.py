@@ -11,11 +11,12 @@ from bs4 import BeautifulSoup
 TELEGRAM_API_KEY = os.environ["TELEGRAM_API_KEY"]
 TELEGRAM_ADMIN_ID = os.environ["TELEGRAM_ADMIN_ID"]
 GOOGLE_SHEETS_CREDENTIALS = os.environ["GOOGLE_SHEETS_CREDENTIALS"]
-with open("trans-falcon-376400-06439da0120a.json", mode="w") as arquivo:
+with open("credenciais.json", mode="w") as arquivo:
   arquivo.write(GOOGLE_SHEETS_CREDENTIALS)
-conta = gspread.service_account.from_json_keyfile_name("trans-falcon-376400-06439da0120a.json")
-chave = conta.open_by_key("1mOd6Muax8S58sSTbH68e-i8rQm8JEyYbDZnZowDrEzY")
-planilha = chave.sheet1
+conta = ServiceAccountCredentials.from_json_keyfile_name("credenciais.json")
+api = gspread.authorize(conta)
+planilha = api.open_by_key("1mOd6Muax8S58sSTbH68e-i8rQm8JEyYbDZnZowDrEzY")
+sheet = planilha.worksheet("Página1")
 app = Flask(__name__)
 df_agenda = None
 @app.route("/dataframe_ALMG")
