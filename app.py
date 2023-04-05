@@ -37,6 +37,7 @@ def dataframe_ALMG():
 
 @app.route("/telegram-bot", methods=["POST"])
 def telegram_bot():
+  global df_agenda
   update = request.json
   chat_id = update["message"]["chat"]["id"]
   message = update["message"]["text"]
