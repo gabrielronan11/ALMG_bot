@@ -1,4 +1,3 @@
-pip install --upgrade pip
 import os
 import pandas as pd
 import json
