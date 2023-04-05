@@ -7,3 +7,4 @@ emoji
 pandas
 json
 bs4
+--upgrade pip
