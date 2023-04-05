@@ -19,7 +19,7 @@ planilha = api.open_by_key("1mOd6Muax8S58sSTbH68e-i8rQm8JEyYbDZnZowDrEzY")
 sheet = planilha.worksheet("Página1")
 app = Flask(__name__)
 df_agenda = None
-@app.route("/dataframe_ALMG")
+@app.route("/dataframe-ALMG")
 def dataframe_ALMG():
   global df_agenda
   site_almg = requests.get('https://www.almg.gov.br/')
@@ -34,11 +34,21 @@ def dataframe_ALMG():
     agenda_dia.append([comissão, link, horario, local])
   df_agenda = pd.DataFrame(agenda_dia, columns=['Comissão', 'Link da Agenda', 'Horário', 'Local'])
   return "Ok!"
-  
-@app.route("/planilha_ALMG")
-def planilha_ALMG():
-  global df_agenda
-  df_agenda['Horário'] = df_agenda['Horário'].astype(str)
-  lista_df = df_agenda.values.tolist()
-  planilha.append_rows(lista_df)
-  return "Planilha escrita!"
+
+@app.route("/telegram-bot", methods=["POST"])
+def telegram_bot():
+  update = request.json
+  chat_id = update["message"]["chat"]["id"]
+  message = update["message"]["text"]
+  if message == "/start":
+    texto_resposta=  emoji.emojize(":robot:") + emoji.emojize(":clapping_hands:") + emoji.emojize(":robot:") + "\n\n" + "Olá! Seja bem-vindo(a)! Esse é um bot no qual você pode ver a agenda da Assembleia Legislativa em Minas Gerais no dia de hoje. \n\n Digite: '<b>Qual a agenda da ALMG hoje?</b>' e confira!"
+  elif message == "Qual a agenda da ALMG hoje?":
+    texto_resposta = emoji.emojize(":police_car_light:") + "<b>ESSA É A AGENDA DA ALMG HOJE</b>" + emoji.emojize(":police_car_light:") + "\n\n" 
+    for i, row in df_agenda.iterrows():
+      texto_resposta += emoji.emojize(":pushpin:") + f"{row['Comissão']}\n" + emoji.emojize(":alarm_clock:") + f"{row['Horário']}\n" + emoji.emojize(":house:") + f"{row['Local']}\n" + emoji.emojize(":link:") + f"Mais informações em: {row['Link da Agenda']}\n\n"
+  else:
+    texto_resposta = "Não entendi!" + emoji.emojize(":sad_but_relieved_face:") + "\n" + "Se você quer saber a agenda da Assembleia Legislativa de Minas Gerais hoje, pergunte: \n <b>'Qual a agenda da ALMG hoje?'</b>"
+  nova_mensagem = {"chat_id": chat_id, "text": texto_resposta, "parse_mode": "html"}
+  resposta = requests.post(f"https://api.telegram.org./bot{TELEGRAM_API_KEY}/sendMessage", data=nova_mensagem)
+  print(resposta.text)
+  return "Ok!"
