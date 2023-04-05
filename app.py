@@ -19,7 +19,7 @@ api = gspread.authorize(conta)
 planilha = api.open_by_key("1mOd6Muax8S58sSTbH68e-i8rQm8JEyYbDZnZowDrEzY")
 sheet = planilha.worksheet("Página1")
 app = Flask(__name__)
-@app.route("/df)
+@app.route("/df")
 def dataframe_ALMG():
   site_almg = requests.get('https://www.almg.gov.br/')
   bs = BeautifulSoup(site_almg.content)
