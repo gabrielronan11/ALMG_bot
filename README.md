@@ -52,3 +52,8 @@ print(response.text)
 -   [ ]  Implementar planilha do Google Spreadsheets
     -   [ ]  Coletar dados que foram raspados no DataFrame e transformá-los em lista com o atributo `values.tolist()`
     -   [ ]  Adicionar as linhas na página da planilha especificada na chave
+
+# Autores
+
+| [<img src="https://avatars.githubusercontent.com/u/37356058?v=4" width=115><br><sub>Gabriel Ronan</sub>](https://github.com/gabrielronan11) |
+| :---: | :---: | :---: |
