@@ -7,7 +7,7 @@ Agenda diária da [Assembleia Legislativa de Minas Gerais](https://www.almg.gov.
 - `Funcionalidade 1`: obter a agenda da ALMG todos os dias a partir de um robô do Telegram
 - `Funcionalidade 2`: cadastrar a agenda da ALMG todos os dias numa planilha do Google Spreadsheets
 
-Esse repositório é um site que possui:
+# Esse repositório é um site que possui:
 
 -   Robô do [Telegram](https://telegram.org/)
 -   Integração com o Google Sheets
