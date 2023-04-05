@@ -1,0 +1,6 @@
+flask
+gunicorn
+requests
+gspread
+oAuth2Client
+emoji
