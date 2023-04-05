@@ -47,7 +47,7 @@ def atualizar_agenda():
     
 @app.route('/atualizar_agenda')
 def rota_atualizar_agenda():
-  schedule.every().day.at("6:00").do(atualizar_agenda)
+  schedule.every().day.at("06:00").do(atualizar_agenda)
   while True:
     schedule.run_pending()
     time.sleep(1) 
