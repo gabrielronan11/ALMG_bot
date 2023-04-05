@@ -7,7 +7,7 @@ import emoji
 import schedule
 from flask import Flask, request
 from oauth2client.service_account import ServiceAccountCredentials
-from datetime import datetime, time
+from datetime import datetime
 from bs4 import BeautifulSoup
 
 TELEGRAM_API_KEY = os.environ["TELEGRAM_API_KEY"]
@@ -35,23 +35,6 @@ def dataframe_ALMG():
   df_agenda['Data']= datetime.today().strftime('%d-%m-%Y')
   df_agenda['Horário'] = df_agenda['Horário'].astype(str)
   return df_agenda
-
-def atualizar_agenda():
-  texto_resposta = ""
-  df_agenda = dataframe_ALMG()
-  for i, row in df_agenda.iterrows():
-    texto_resposta += f"{row['Comissão']}\n{row['Horário']}\n{row['Local']}\n{row['Link da Agenda']}\n\n"
-    nova_mensagem = {"chat_id": TELEGRAM_CHAT_ID, "text": texto_resposta, "parse_mode": "html"}
-    resposta = requests.post(f"https://api.telegram.org./bot{TELEGRAM_API_KEY}/sendMessage", data=nova_mensagem)
-    print(resposta.text)
-    
-@app.route('/atualizar_agenda')
-def rota_atualizar_agenda():
-  schedule.every().day.at("06:00").do(atualizar_agenda)
-  while True:
-    schedule.run_pending()
-    time.sleep(1) 
-    return "Agenda atualizada com sucesso!"    
 
 @app.route("/telegram-bot", methods=["POST"])
 def telegram_bot():
