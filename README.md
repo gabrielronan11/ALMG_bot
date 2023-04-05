@@ -34,11 +34,11 @@ print(response.text)
 -------------------------------------------------------------------------------------------------
 
 -   [ ]  Implementar Web scraping
-    -   []  Criar código para raspar o site da ALMG
-    -   []  Alimentar dataFrame do Pandas com resultado da raspagem
-    -   []  No Dataframe, não se esquecer de criar uma coluna ["data"] para informar quando aquela raspagem foi feita
-    -   [] Ainda no DataFrame, transformar a coluna ["Horário"] para `str` para possibilitar a integração à planilha
-    -   []  Configurar Pipedream para chamar código 1x por dia
+    -   [ ]  Criar código para raspar o site da ALMG
+    -   [ ]  Alimentar dataFrame do Pandas com resultado da raspagem
+    -   [ ]  No Dataframe, não se esquecer de criar uma coluna ["data"] para informar quando aquela raspagem foi feita
+    -   [ ] Ainda no DataFrame, transformar a coluna ["Horário"] para `str` para possibilitar a integração à planilha
+    -   [ ]  Configurar Pipedream para chamar código 1x por dia
 -   [ ]  Implementar robô do Telegram
     -   [ ]  Coletar dados que foram raspados no dataFrame
     -   [ ]  Usar emojis para formatar o texto final
