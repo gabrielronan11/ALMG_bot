@@ -4,7 +4,6 @@ import json
 import gspread
 import requests
 import emoji
-import schedule
 from flask import Flask, request
 from oauth2client.service_account import ServiceAccountCredentials
 from datetime import datetime
