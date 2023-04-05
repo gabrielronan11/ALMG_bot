@@ -1,6 +1,6 @@
 <h1 align="center"> ALMG Bot </h1>
 
-Agenda diária da Assembleia Legislativa de Minas Gerais por meio de um bot do Telegram
+Agenda diária da [Assembleia Legislativa de Minas Gerais](https://www.almg.gov.br/comunicacao/agenda/) por meio de um bot do Telegram
 --------------------------------------------------------------------------------------
 Esse repositório é um site que possui:
 
