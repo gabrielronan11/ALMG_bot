@@ -17,9 +17,10 @@ conta = gspread.service_account.from_json_keyfile_name("trans-falcon-376400-0643
 chave = conta.open_by_key("1mOd6Muax8S58sSTbH68e-i8rQm8JEyYbDZnZowDrEzY")
 planilha = chave.sheet1
 app = Flask(__name__)
-
+df_agenda = None
 @app.route("/dataframe_ALMG")
 def dataframe_ALMG():
+  global df_agenda
   site_almg = requests.get('https://www.almg.gov.br/')
   bs = BeautifulSoup(site_almg.content)
   agenda_items = bs.findAll('div', {'class': 'almg-css_eventoDescTit'})
@@ -35,6 +36,7 @@ def dataframe_ALMG():
   
 @app.route("/planilha_ALMG")
 def planilha_ALMG():
+  global df_agenda
   df_agenda['Horário'] = df_agenda['Horário'].astype(str)
   lista_df = df_agenda.values.tolist()
   planilha.append_rows(lista_df)
