@@ -7,7 +7,7 @@ import emoji
 import schedule
 from flask import Flask, request
 from oauth2client.service_account import ServiceAccountCredentials
-from datetime import datetime
+from datetime import datetime, time
 from bs4 import BeautifulSoup
 
 TELEGRAM_API_KEY = os.environ["TELEGRAM_API_KEY"]
