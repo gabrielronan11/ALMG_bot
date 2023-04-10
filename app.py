@@ -25,7 +25,8 @@ def dataframe_ALMG():
   agenda_dia = []
   for i, agenda in enumerate(agenda_items):
     comissão = agenda.get_text(strip=True)
-    link = "https://www.almg.gov.br/"+agenda.find('a').get('href')
+    link_tag = agenda.find('a')
+    link = "https://www.almg.gov.br/"+link_tag['href'] if link_tag else 'Não há link disponível na agenda'
     horario = bs.findAll('span', {"class": "almg-css_dataHourSingle text-dark"})[i].text
     local = bs.findAll('p', {"class": "m-0 mt-2 text-gray-550"})[i].text
     agenda_dia.append([comissão, link, horario, local])
