@@ -18,8 +18,6 @@ conta = ServiceAccountCredentials.from_json_keyfile_name("credenciais.json")
 api = gspread.authorize(conta)
 planilha = api.open_by_key("1mOd6Muax8S58sSTbH68e-i8rQm8JEyYbDZnZowDrEzY")
 sheet = planilha.worksheet("Página1")
-app = Flask(__name__)
-@app.route("/df")
 def dataframe_ALMG():
   site_almg = requests.get('https://www.almg.gov.br/')
   bs = BeautifulSoup(site_almg.content)
@@ -34,7 +32,6 @@ def dataframe_ALMG():
   df_agenda = pd.DataFrame(agenda_dia, columns=['Comissão', 'Link da Agenda', 'Horário', 'Local'])
   df_agenda['Data']= datetime.today().strftime('%d-%m-%Y')
   df_agenda['Horário'] = df_agenda['Horário'].astype(str)
-  return df_agenda
 
 @app.route("/telegram-bot", methods=["POST"])
 def telegram_bot():
