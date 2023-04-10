@@ -32,6 +32,7 @@ def dataframe_ALMG():
   df_agenda = pd.DataFrame(agenda_dia, columns=['Comissão', 'Link da Agenda', 'Horário', 'Local'])
   df_agenda['Data']= datetime.today().strftime('%d-%m-%Y')
   df_agenda['Horário'] = df_agenda['Horário'].astype(str)
+  return df_agenda
 
 @app.route("/telegram-bot", methods=["POST"])
 def telegram_bot():
